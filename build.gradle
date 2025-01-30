@@ -24,5 +24,23 @@ dependencies {
 }
 
 tasks.named('test') {
+	doFirst {
+		println "Test classpath:"
+		println classpath.files.join("\n")
+	}
 	useJUnitPlatform()
+}
+
+test {
+	testLogging {
+		events "passed", "skipped", "failed" //, "standardOut", "standardError"
+
+		showExceptions true
+		exceptionFormat "full"
+		showCauses true
+		showStackTraces true
+
+		// Change to `true` for more verbose test output
+		showStandardStreams = false
+	}
 }
